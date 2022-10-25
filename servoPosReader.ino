@@ -1,12 +1,21 @@
-// Carl Johan Ståhl 2B
-// Tillämpad programmering projekt 1
+// Carl Johan Ståhl & Emrik Bergman 2B
+// Servo Pos Reader
+
+int readPins [8] = {0, 1, 2, 3, 4, 5, 6, 7};
+
+
+
 
 void setup(){
     Serial.begin(12500);
 }
 
 
+int getPos() {
+    return(255);
+}
+
+
 void loop(){
-    Serial.print("!");
     delay(1);
 }
