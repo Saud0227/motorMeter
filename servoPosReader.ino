@@ -1,4 +1,4 @@
-// Carl Johan Ståhl & Emrik Bergman 2B
+// Carl Johan Ståhl & Emil Bergman 2B & Emil Bergman 2B
 // Servo Pos Reader
 
 int readPins [8] = {0, 1, 2, 3, 4, 5, 6, 7};
