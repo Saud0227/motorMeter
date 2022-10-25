@@ -1,4 +1,4 @@
-// Carl Johan Ståhl 2B
+// Carl Johan Ståhl 2B & Emil Bergman 2B
 // Tillämpad programmering projekt 1
 
 void setup(){
