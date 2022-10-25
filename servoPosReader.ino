@@ -20,4 +20,5 @@ int getPos() {
 
 void loop(){
     delay(1);
+    getPos();
 }
