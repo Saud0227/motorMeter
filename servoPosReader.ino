@@ -8,11 +8,11 @@ int readPins [8] = {A0, A1, A2, A3, A4, A5, 3, 5};
 int analog_IN = A0;  // This is our input pin
 int digital_OUT = 13;
 
-void setup() { 
+void setup() {
     pinMode(digital_OUT, 1);
     pinMode(analog_IN, 0);
     Serial.begin(9600);
-  
+
 }
 
 void loop() {
@@ -28,8 +28,8 @@ void loop() {
 bool readVal(int iToRead){
     int Value = analogRead(readPins[iToRead]);
     Serial.print("Analog read: ");
-    Serial.println(Value);  
+    Serial.println(Value);
     delay(200);
     return (Value < 500);
-    
+
 }
