@@ -24,17 +24,9 @@ int getPos() {
 
 
 void loop(){
-    delay(500);
-    writeOut(1020);
-    delay(500);
-
-
-    while(true) {
-        digitalWrite(13,1);
-        delay(500);
-        digitalWrite(13,0);
-        delay(500);
-    }
+    // delay(500);
+    // writeOut(1020);
+    // delay(500);
 }
 
 
