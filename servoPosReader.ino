@@ -5,27 +5,6 @@
 
 int readPins [8] = {A0, A1, A2, A3, A4, A5, 3, 5};
 
-
-
-/*
-void setup(){
-    Serial.begin(12500);
-}
-
-
-int getPos() {
-    return(255);
-}
-
-
-void loop(){
-    delay(1);
-    getPos();
-}
-
-
-*/
-
 int analog_IN = A0;  // This is our input pin
 int digital_OUT = 13;
 
