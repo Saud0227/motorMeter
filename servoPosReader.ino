@@ -29,15 +29,15 @@ void loop() {
     // }else{
     //   digitalWrite(13, 1);
     // }
+    Serial.print(getPos());
 }
 
 
 
 bool readVal(int iToRead){
     int Value = analogRead(readPins[iToRead]);
-    Serial.print("Analog read: ");
-    Serial.println(Value);
-    delay(200);
+    // Serial.print("Analog read: ");
+    // Serial.println(Value);
     return (Value < 500);
 }
 
@@ -46,8 +46,16 @@ int getPos() {
     // test if line 49 gives a binary 0 1 or a bool
     byte outCode = 0;
     for (byte i = 0; i < 8; i++){
-        Serial.print(readVal(i)*1);
+        byte iVal = readVal(i)*1;
+        // Serial.print(iVal);
+        outCode += pow(2, 7-i)*iVal;
     }
+    // Serial.print("\n");
+    // Serial.print(outCode);
+    // Serial.print("\n");
+
+    delay(200);
+    return (outCode);
 }
 
 
