@@ -52,13 +52,20 @@ int songTime[] =
 // <!Rick roll section>
 
 
+int button_IN = 12;
+
 void setup() {
     pinMode(PIEZO_PORT, 1);
     Serial.begin(12500);
     delay(1000);
     // pinMode(13, 1);
-    Keyboard.begin();
+    //Keyboard.begin();
 }
+
+bool buttonPressed(){ //kollar om knappen trycks ned
+  return digitalRead(button_IN)==1;
+}
+
 
 void loop() {
     // delay(500);
@@ -108,9 +115,8 @@ int getPos() {
 }
 
 
-
 void writeOut(int toWrite){
-    Keyboard.print(toWrite);
+    //Keyboard.print(toWrite);
 
 }
 
