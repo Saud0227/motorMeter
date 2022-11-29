@@ -9,13 +9,20 @@ int readPins [8] = {A0, A1, A2, A3, A4, A5, 3, 5};
 
 int analog_IN = A0;  // This is our input pin
 
+int button_IN = 12;
+
 void setup() {
     pinMode(analog_IN, 0);
     Serial.begin(12500);
     delay(1000);
     // pinMode(13, 1);
-    Keyboard.begin();
+    //Keyboard.begin();
 }
+
+bool buttonPressed(){ //kollar om knappen trycks ned
+  return digitalRead(button_IN)==1;
+}
+
 
 void loop() {
     // delay(500);
@@ -59,8 +66,7 @@ int getPos() {
 }
 
 
-
 void writeOut(int toWrite){
-    Keyboard.print(toWrite);
+    //Keyboard.print(toWrite);
 
 }
