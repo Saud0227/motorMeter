@@ -6,8 +6,9 @@
 #include <Keyboard.h>
 
 #define PIEZO_PORT 7
+#define BUTTON_IN 3
 
-int readPins[8] = {A0, A1, A2, A3, A4, A5, 3, 5};
+int readPins[8] = {A0, A1, A2, A3, A4, A5, 4, 5};
 
 // <Rick roll section>
 
@@ -45,10 +46,10 @@ int songTime[] =
 
 // <!Rick roll section>
 
-int button_IN = 4;
 
 void setup(){
     pinMode(PIEZO_PORT, 1);
+    pinMode(BUTTON_IN, 0);
     Serial.begin(12500);
     delay(1000);
     // pinMode(13, 1);
@@ -59,7 +60,7 @@ bool buttonPressed(){
     // IN:  Emrik
     // OUT: Emrik
     // DO:  Emrik
-    return digitalRead(button_IN) == 1;
+    return digitalRead(BUTTON_IN) == 1;
 }
 
 bool readVal(int iToRead){
@@ -80,13 +81,14 @@ int getPos(){
     byte outCode = 0;
     for (byte i = 0; i < 8; i++){
         byte iVal = readVal(i) * 1;
-        // Serial.print(iVal);
-        outCode += pow(2, 7 - i) * iVal;
+        Serial.print(iVal);
+        outCode += getPowTwo((7 - i)) * iVal;
     }
 
 
 
     delay(200);
+    Serial.print("\n");
     return (outCode);
 }
 
@@ -131,6 +133,7 @@ void loop(){
         }
 
         Serial.print(getPos());
+        Serial.print("\n");
 
         tone(PIEZO_PORT, 1000);
         delay(250);
@@ -143,4 +146,17 @@ void loop(){
 
 
     // rick();
+}
+
+
+
+int getPowTwo(int exp){
+    if(exp == 0){
+        return(1);
+    }
+    int out = 1;
+    for (byte i = 0; i < exp; i++){
+        out *= 2;
+    }
+    return(out);
 }
