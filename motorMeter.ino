@@ -56,11 +56,17 @@ void setup(){
 }
 
 bool buttonPressed(){
-    // kollar om knappen trycks ned
+    // IN:  Emrik
+    // OUT: Emrik
+    // DO:  Emrik
     return digitalRead(button_IN) == 1;
 }
 
 bool readVal(int iToRead){
+    // IN:  Emrik
+    // OUT: Emrik
+    // DO:  Emrik
+
     int Value = analogRead(readPins[iToRead]);
     // Serial.print("Analog read: ");
     // Serial.println(Value);
