@@ -45,7 +45,7 @@ int songTime[] =
 
 // <!Rick roll section>
 
-int button_IN = 12;
+int button_IN = 4;
 
 void setup(){
     pinMode(PIEZO_PORT, 1);
@@ -60,10 +60,67 @@ bool buttonPressed(){
     return digitalRead(button_IN) == 1;
 }
 
+bool readVal(int iToRead){
+    int Value = analogRead(readPins[iToRead]);
+    // Serial.print("Analog read: ");
+    // Serial.println(Value);
+    return (Value < 500);
+}
+
+int getPos(){
+    // IN:  No params in the function but uses the length of the global array in addition as the helper function readVal.
+    // OUT: Integer between 0-255-
+    // DO:  Reads every part of the greycode like an binary number and generates an val
+    byte outCode = 0;
+    for (byte i = 0; i < 8; i++){
+        byte iVal = readVal(i) * 1;
+        // Serial.print(iVal);
+        outCode += pow(2, 7 - i) * iVal;
+    }
+
+
+
+    delay(200);
+    return (outCode);
+}
+
+void writeOut(int toWrite){
+    // IN:  String to type in the computer.
+    // OUT: Nothing, void function.
+    // DO:  Writes the string 
+    Keyboard.print(toWrite);
+}
+
+void rick(){
+    // IN:  Nothing
+    // OUT: Nothing, void function.
+    // DO:  Halts execution to rick roll everyone
+
+
+    int cTime = 0;
+    // Serial.print("!");
+    while (cTime <= sizeof(songNotes) / sizeof(int)){
+        // Serial.print(cTime);
+
+        int noteLength = beatLength * songTime[cTime];
+        // chorus
+
+        if (songNotes[cTime] > 0){
+            tone(PIEZO_PORT, songNotes[cTime], noteLength);
+        }
+        delay(noteLength);
+        noTone(PIEZO_PORT);
+        delay(noteLength * beatSeparationConstant);
+        cTime++;
+    }
+}
+
+
+
 void loop(){
     while (true){
 
-        if (buttonPressed()){
+        if (!buttonPressed()){
             break;
         }
 
@@ -80,50 +137,4 @@ void loop(){
 
 
     // rick();
-}
-
-bool readVal(int iToRead){
-    int Value = analogRead(readPins[iToRead]);
-    // Serial.print("Analog read: ");
-    // Serial.println(Value);
-    return (Value < 500);
-}
-
-int getPos(){
-
-    byte outCode = 0;
-    for (byte i = 0; i < 8; i++){
-        byte iVal = readVal(i) * 1;
-        // Serial.print(iVal);
-        outCode += pow(2, 7 - i) * iVal;
-    }
-    // Serial.print("\n");
-    // Serial.print(outCode);
-    // Serial.print("\n");
-
-    delay(200);
-    return (outCode);
-}
-
-void writeOut(int toWrite){
-    Keyboard.print(toWrite);
-}
-
-void rick(){
-    int b = 0;
-    // Serial.print("!");
-    while (b <= sizeof(songNotes) / sizeof(int)){
-        // Serial.print(b);
-
-        int noteLength = beatLength * songTime[b];
-        // chorus
-
-        if (songNotes[b] > 0){
-            tone(PIEZO_PORT, songNotes[b], noteLength);
-        }
-        delay(noteLength);
-        noTone(PIEZO_PORT);
-        delay(noteLength * beatSeparationConstant);
-        b++;
-    }
 }
