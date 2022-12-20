@@ -64,7 +64,7 @@ bool buttonPressed(){
 }
 
 bool readVal(int iToRead){
-    // IN:  none
+    // IN:  iToRead
     // OUT: returns if the color is white or black
     // DO:  determines the resistance of the LDR-modules
 
