@@ -1,5 +1,5 @@
 // Carl Johan Ståhl & Emil "Henrik" Bergman 2B
-// Servo Pos Reader
+// motor Pos Reader
 
 // https://github.com/users/Saud0227/projects/1
 
@@ -57,21 +57,21 @@ void setup(){
 }
 
 bool buttonPressed(){
-    // IN:  Emrik
-    // OUT: Emrik
-    // DO:  Emrik
+    // IN:  buttonpin
+    // OUT: boolean
+    // DO: determines if the action-button is pressed
     return digitalRead(BUTTON_IN) == 1;
 }
 
 bool readVal(int iToRead){
-    // IN:  Emrik
-    // OUT: Emrik
-    // DO:  Emrik
+    // IN:  none
+    // OUT: returns if the color is white or black
+    // DO:  determines the resistance of the LDR-modules
 
     int Value = analogRead(readPins[iToRead]);
     // Serial.print("Analog read: ");
     // Serial.println(Value);
-    return (Value < 500);
+    return (Value < 100);
 }
 
 int getPos(){
